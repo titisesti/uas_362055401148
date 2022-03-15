@@ -5,26 +5,31 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class CountryWidget extends StatefulWidget {
+  int index;
+  CountryWidget({required this.index});
   @override
-  _CountryWidgetState createState() => _CountryWidgetState();
+  _CountryWidgetState createState() => _CountryWidgetState(index: index);
 }
 
 class _CountryWidgetState extends State<CountryWidget> {
-  var _get;
+  String key = 'null';
+  String jKasus = 'null';
+  String jDeath = 'null';
+  int index;
+  _CountryWidgetState({required this.index});
 
   Future _getData() async {
     try {
       final response = await http
           .get(Uri.parse("https://data.covid19.go.id/public/api/prov.json"));
-      // return jsonDecode(response.body);
-
-      // untuk cek data
       if (response.statusCode == 200) {
         print(response.body);
         final data = json.decode(response.body);
 
         setState(() {
-          _get = data['list_data'];
+          key = data['list_data'][index]['key'];
+          jKasus = data['list_data'][index]['jumlah_kasus'].toString();
+          jDeath = data['list_data'][index]['jumlah_meninggal'].toString();
         });
       }
     } catch (e) {
@@ -34,7 +39,6 @@ class _CountryWidgetState extends State<CountryWidget> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _getData();
   }
@@ -43,7 +47,7 @@ class _CountryWidgetState extends State<CountryWidget> {
   Widget build(BuildContext context) {
     return Container(
         height: 150,
-        width: double.infinity,
+        width: MediaQuery.of(context).size.width - 20,
         padding: EdgeInsets.all(15),
         decoration: BoxDecoration(
             color: Color.fromARGB(255, 185, 221, 250),
@@ -69,7 +73,7 @@ class _CountryWidgetState extends State<CountryWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${_get[3]['key'].toString()}',
+                          key,
                           style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,
@@ -80,15 +84,11 @@ class _CountryWidgetState extends State<CountryWidget> {
                       ],
                     ),
                     Text(
-                      '- ' +
-                          '${_get[3]['jumlah_kasus'].toString()}' +
-                          " infected cases reported",
+                      '- ' + '$jKasus' + " infected cases reported",
                       style: TextStyle(color: Colors.black87, fontSize: 13),
                     ),
                     Text(
-                      '- ' +
-                          '${_get[3]['jumlah_meninggal'].toString()}' +
-                          " death cases reported",
+                      '- ' + '$jDeath' + " death cases reported",
                       style: TextStyle(color: Colors.black87, fontSize: 13),
                     )
                   ],
