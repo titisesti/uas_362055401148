@@ -1,16 +1,10 @@
-# uass
+NAMA KELOMPOK :
+1. Titis Esti Rahayu,
+2. Jauhara Nada Dzikria,
+3. Agam Surya Armanda,
+4. Aan Triambudi,
 
-A new Flutter project.
 
-## Getting Started
+![1](https://user-images.githubusercontent.com/96191630/158175724-b10f4973-0145-4425-b629-31e14c2d8b85.jpg)
+![2](https://user-images.githubusercontent.com/96191630/158175736-66310562-47e6-42ca-bfaa-468fb90299aa.jpg)
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
